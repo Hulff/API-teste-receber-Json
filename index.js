@@ -24,6 +24,7 @@ app.get("/",(req,res)=>{
 
 app.post("/json",(req,res)=>{
     console.log(req.body)
+    console.log(req.body.json())
     let novoDado = {
         dado:1
     }
