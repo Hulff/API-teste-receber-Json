@@ -2,7 +2,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const data = new Schema({
-    dado: Schema.Types.Mixed,
+    dado: {
+        type:Object
+    },
     data:{
         type: Date,
 		default: Date.now
