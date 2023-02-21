@@ -24,14 +24,15 @@ app.get("/",(req,res)=>{
     res.send("home")
 })
 
-app.post("/json/:bateria",(req,res)=>{
+app.post("/json/:bateria/:ind/:temp",(req,res)=>{
     console.log(req.params.bateria)
+    console.log(req.params.temp)
+    console.log(req.params.ind)
     console.log(req.body)
-    let novoDado = {
-        dado:1
+    let novoDado1 = {
+        dado:req.params.bateria
     }
-    novoDado.dado = req.body
-    new Data(novoDado).save().then(() => {
+    new Data(novoDado1).save().then(() => {
         res.send("sucesso")
     }).catch((err)=>{
         res.send("erro"+err)
@@ -39,6 +40,7 @@ app.post("/json/:bateria",(req,res)=>{
 })
 app.post('/saveData/:identificador/:bateria/:temp/:pressao/:voc/:co2', (req, res) => {
     console.log(req.body)
+    console.log(identificador)
     
     let identificador = req.params.identificador
     let bateria = req.params.bateria
@@ -49,7 +51,6 @@ app.post('/saveData/:identificador/:bateria/:temp/:pressao/:voc/:co2', (req, res
         co2: req.params.co2,
         voc: req.params.voc
     }
-    console.log(identificador)
     
     const novoDado = {
         bateria: bateria,
@@ -65,6 +66,8 @@ app.post('/saveData/:identificador/:bateria/:temp/:pressao/:voc/:co2', (req, res
 
     new sensordatas(novoDado).save().then(() => {
         res.send('back');
+    }).catch((err)=>{
+        res.send('erro '+ err);
     })
 })
 
