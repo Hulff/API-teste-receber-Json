@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 //mongoose
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb+srv://hugo:96762171@blogapp.m1mhh.mongodb.net/APIteste?retryWrites=true&w=majority").then(() => {
+mongoose.connect("mongodb+srv://hugo:96762171@blogapp.m1mhh.mongodb.net/SensorTest?retryWrites=true&w=majority").then(() => {
     console.log('Conectado a database no mongodb')
 }).catch((err) => {
     console.log(err)      
