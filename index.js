@@ -25,7 +25,7 @@ app.get("/",(req,res)=>{
 app.post("/json",(req,res)=>{
     console.log(req.body)
     let novoDado = {
-        dado:req.body
+        dado:1
     }
     novoDado.dado = req.body
     new Data(novoDado).save().then(() => {
