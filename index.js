@@ -22,7 +22,8 @@ app.get("/",(req,res)=>{
     res.send("home")
 })
 
-app.post("/json",(req,res)=>{
+app.post("/json/:bateria",(req,res)=>{
+    console.log(req.params.bateria)
     console.log(req.body)
     let novoDado = {
         dado:1
