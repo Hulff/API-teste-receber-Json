@@ -24,9 +24,12 @@ app.get("/",(req,res)=>{
     res.send("home")
 })
 
-app.post("/json/:bateria/:ind/:temp",(req,res)=>{
+app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2",(req,res)=>{
     console.log(req.params.bateria)
     console.log(req.params.temp)
+    console.log(req.params.pressao)
+    console.log(req.params.voc)
+    console.log(req.params.co2)
     console.log(req.params.ind)
     console.log(req.body)
     let novoDado1 = {
