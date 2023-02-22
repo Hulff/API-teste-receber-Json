@@ -26,6 +26,10 @@ const sensordata = new Schema({
     identificador: {
         type: Number,
         require:true
+    },
+    horario:{
+        hora:{type:Number},
+        min:{type:Number}
     }
 })
 
