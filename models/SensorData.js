@@ -28,6 +28,8 @@ const sensordata = new Schema({
         require:true
     },
     horario:{
+        mes:{type:Number},
+        dia:{type:Number},
         hora:{type:Number},
         min:{type:Number}
     }

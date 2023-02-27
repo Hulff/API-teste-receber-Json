@@ -44,11 +44,13 @@ app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2",(req,res)=>{
         },
         identificador:req.params.ind,
         horario:{
-            hora:new Date().getHours(),
-            min:new Date().getMinutes()
+            dia:parseInt(new Date().getDay()),
+            mes:parseInt(new Date().getMonth()),
+            hora:parseInt(new Date().getHours()),
+            min:parseInt(new Date().getMinutes())
         }
     }
-
+    console.log(novoDado)
     new sensordatas(novoDado).save().then(() => {
         res.send("sucesso")
     }).catch((err)=>{
