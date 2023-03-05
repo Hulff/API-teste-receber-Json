@@ -46,7 +46,7 @@ app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2",(req,res)=>{
         horario:{
             dia:parseInt(new Date().getDay()),
             mes:parseInt(new Date().getMonth()),
-            hora:parseInt(new Date().getHours()),
+            hora:parseInt(new Date().getUTCHours()),
             min:parseInt(new Date().getMinutes())
         }
     }
