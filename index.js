@@ -24,7 +24,7 @@ app.get("/",(req,res)=>{
     res.send("home")
 })
 
-app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2",(req,res)=>{
+app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2/:umidade/:altitude",(req,res)=>{
     console.log(req.params.bateria)
     console.log(req.params.temp)
     console.log(req.params.pressao)
@@ -38,21 +38,22 @@ app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2",(req,res)=>{
         temperatura: req.params.temp,
         pressao: req.params.pressao,
         payload: {
-            altitude: (44331.5-(4946.62*(req.params.pressao**0.190263))),
+            altitude: req.params.altitude,
             co2: req.params.co2,
             voc:req.params.voc
         },
         identificador:req.params.ind,
+        umidade:req.params.umidade,
         horario:{
-            dia:parseInt(new Date().getDay()),
+            dia:parseInt(new Date().getDate()),
             mes:parseInt(new Date().getMonth()),
-            hora:parseInt(new Date().getHours()),
+            hora:parseInt((new Date().getHours())-3),
             min:parseInt(new Date().getMinutes())
         }
     }
     console.log(novoDado)
     new sensordatas(novoDado).save().then(() => {
-        res.send("sucesso")
+        res.send("sucesso "+"salvo as "+parseInt((new Date().getHours())-3)+" horas e "+parseInt(new Date().getMinutes())+" minutos")
     }).catch((err)=>{
         res.send("erro"+err)
     })

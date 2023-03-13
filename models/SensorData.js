@@ -14,6 +14,10 @@ const sensordata = new Schema({
         type: Number,
         require: true
     },
+    umidade:{
+        type: Number,
+        require: true
+    },
       payload: {
         altitude: Number,
         co2:  Number,
