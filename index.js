@@ -23,6 +23,21 @@ mongoose.connect("mongodb+srv://hugo:96762171@blogapp.m1mhh.mongodb.net/SensorTe
 app.get("/",(req,res)=>{
     res.send("home")
 })
+app.get("/getdata/:ind", (req,res)=>{
+    let inds = parseFloat(req.params.ind)
+    sensordatas.find({identificador:inds}).sort({_id:-1}).limit(1).then((data) => {
+        res.send(data)
+    })
+})
+app.get("/getHistory/:ind/:dia", (req,res)=>{
+    let inds = parseFloat(req.params.ind)
+    let day = parseFloat(req.params.dia)
+    sensordatas.find({identificador:inds,"horario.dia":day}).sort({"horario.hora":-1,"horario.min":-1}).then((data) => {
+        res.send(data)
+    }).catch((err)=>{
+        res.send("no data")
+    })
+})
 
 app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2/:umidade/:altitude",(req,res)=>{
     console.log(req.params.bateria)
