@@ -1,9 +1,11 @@
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const app = express()
-const PORT = process.env.PORT||8080
-
+const PORT = process.env.PORT||8081
+ 
+app.options('*', cors()) // include before other routes
 // models
 require('./models/data')
 const Data = mongoose.model("Data")
