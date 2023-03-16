@@ -4,8 +4,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const app = express()
 const PORT = process.env.PORT||8081
- 
-app.use(cors());
+
 // models
 require('./models/data')
 const Data = mongoose.model("Data")
@@ -14,6 +13,7 @@ const sensordatas = mongoose.model("SensorData")
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
 //mongoose
 mongoose.Promise = global.Promise
 mongoose.connect("mongodb+srv://hugo:96762171@blogapp.m1mhh.mongodb.net/SensorTest?retryWrites=true&w=majority").then(() => {
@@ -21,6 +21,7 @@ mongoose.connect("mongodb+srv://hugo:96762171@blogapp.m1mhh.mongodb.net/SensorTe
 }).catch((err) => {
     console.log(err)      
 })
+app.use(cors());
 
 app.get("/",(req,res)=>{
     res.send("home")
