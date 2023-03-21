@@ -52,9 +52,11 @@ app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2/:umidade/:altitude",(req,
     console.log(req.params.co2)
     console.log(req.params.ind)
     console.log(req.body)
+    let dia = new Date().getDate()
     let hora = new Date().getHours()
     if (hora == 0) {
         hora = 24
+        dia = dia-1
     }
     const novoDado = {
         bateria: req.params.bateria,
@@ -69,7 +71,7 @@ app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2/:umidade/:altitude",(req,
         umidade:req.params.umidade,
         horario:{
             ano:parseInt(new Date().getFullYear()),
-            dia:parseInt(new Date().getDate()),
+            dia:parseInt(dia),
             mes:parseInt(new Date().getMonth()),
             hora:parseInt(hora-3),
             min:parseInt(new Date().getMinutes())
