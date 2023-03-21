@@ -87,7 +87,7 @@ app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2/:umidade/:altitude",(req,
     }
     console.log(novoDado)
     new sensordatas(novoDado).save().then(() => {
-        res.send("sucesso "+"salvo as "+hora-3+" horas e "+parseInt(new Date().getMinutes())+" minutos")
+        res.send("sucesso "+"salvo as "+(hora-3)+" horas e "+parseInt(new Date().getMinutes())+" minutos")
     }).catch((err)=>{
         res.send("erro"+err)
     })
