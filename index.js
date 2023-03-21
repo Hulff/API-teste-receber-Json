@@ -32,10 +32,12 @@ app.get("/getdata/:ind", (req,res)=>{
         res.send(data)
     })
 })
-app.get("/getHistory/:ind/:dia", (req,res)=>{
+app.get("/getHistory/:ind/:dia/:mes/:ano", (req,res)=>{
     let inds = parseFloat(req.params.ind)
     let day = parseFloat(req.params.dia)
-    sensordatas.find({identificador:inds,"horario.dia":day}).sort({"horario.hora":-1,"horario.min":-1}).then((data) => {
+    let year = parseFloat(req.params.ano)
+    let month = parseFloat(req.params.mes)
+    sensordatas.find({identificador:inds,"horario.dia":day,"horario.mes":month,"horario.ano":year}).sort({"horario.hora":-1,"horario.min":-1}).then((data) => {
         res.send(data)
     }).catch((err)=>{
         res.send("no data")
@@ -63,6 +65,7 @@ app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2/:umidade/:altitude",(req,
         identificador:req.params.ind,
         umidade:req.params.umidade,
         horario:{
+            ano:parseInt(new Date().getFullYear()),
             dia:parseInt(new Date().getDate()),
             mes:parseInt(new Date().getMonth()),
             hora:parseInt((new Date().getHours())-3),
