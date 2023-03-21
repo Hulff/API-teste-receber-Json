@@ -57,6 +57,14 @@ app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2/:umidade/:altitude",(req,
     if (hora == 0) {
         hora = 24
         dia = dia-1
+    } else if (hora == 1) {
+        hora = 25
+        dia = dia-1
+    } else if (hora == 2) {
+        hora = 26
+        dia = dia-1
+    } else if (hora == 3) {
+        hora = 0
     }
     const novoDado = {
         bateria: req.params.bateria,
@@ -79,7 +87,7 @@ app.post("/json/:bateria/:ind/:temp/:pressao/:voc/:co2/:umidade/:altitude",(req,
     }
     console.log(novoDado)
     new sensordatas(novoDado).save().then(() => {
-        res.send("sucesso "+"salvo as "+parseInt((new Date().getHours())-3)+" horas e "+parseInt(new Date().getMinutes())+" minutos")
+        res.send("sucesso "+"salvo as "+hora+" horas e "+parseInt(new Date().getMinutes())+" minutos")
     }).catch((err)=>{
         res.send("erro"+err)
     })
